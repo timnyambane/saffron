@@ -4,7 +4,12 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import PrimeVue from "primevue/config";
 import Aura from "@primeuix/themes/aura";
 import { definePreset } from "@primeuix/themes";
+import { Icon } from "@iconify/vue";
 
+import Layout from "./layouts/Layout.vue";
+import { ZiggyVue } from "ziggy-js";
+
+// Define a custom preset for PrimeVue theme
 const myPreset = definePreset(Aura, {
     semantic: {
         primary: {
@@ -23,23 +28,37 @@ const myPreset = definePreset(Aura, {
     },
 });
 
+const appName = import.meta.env.VITE_APP_NAME || "Laravel";
+
 createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
-        const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
-        return pages[`./Pages/${name}.vue`];
+        const pages = import.meta.glob("./pages/**/*.vue", { eager: true });
+        let page = pages[`./pages/${name}.vue`];
+
+        if (!page) {
+            console.error(`Page ${name} not found in the Pages directory.`);
+            return;
+        }
+
+        page.default.layout = page.default.layout ?? Layout;
+
+        return page;
     },
+
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue)
             .use(PrimeVue, {
                 theme: {
                     preset: myPreset,
                     options: {
-                        darkModeSelector: false || "none",
+                        darkModeSelector: "none", // Default false was redundant
                     },
                 },
             })
-
+            .component("Icon", Icon)
             .mount(el);
     },
 });

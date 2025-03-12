@@ -1,20 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import { Head, Link } from "@inertiajs/vue3";
 
-const value = ref("");
-const date = ref();
-
-function showApply() {
-    console.log(date.value);
-}
+defineOptions({
+    layout: false,
+});
 </script>
-
 <template>
-    <div class="flex gap-4 items-center p-4">
-        <h1 class="text-lg">Hello World!</h1>
-        <span class="text-3xl font-black">Welcome</span>
-        <InputText type="text" v-model="value" placeholder="Enter name" />
-        <Button label="Submit" @click="showApply" />
-        <DatePicker name="date" fluid placeholder="Date" v-model="date" />
+    <Head title="Welcome" />
+    <div class="">
+        Welcome! <Link :href="route('dashboard')">Dashboard</Link>
     </div>
 </template>
