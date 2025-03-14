@@ -1,15 +1,20 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { Head, useForm } from "@inertiajs/vue3";
+import { religions, grades, subjects } from "../../data";
 
 const student = useForm({
     firstName: null,
-    surname: null,
+    surame: null,
     lastName: null,
     gender: null,
     dob: null,
     address: null,
+    enrollment: null,
     class: null,
     photo: null,
+    religion: null,
+    country: null,
+    subjects: {},
     guardian: {
         relation: null,
         name: null,
@@ -20,81 +25,150 @@ const student = useForm({
 </script>
 
 <template>
-    <!-- <div class="p-4 bg-white shadow rounded-xl w-full mx-auto">
-        <h2 class="text-lg font-semibold text-center">
+    <Head title="Student Admission" />
+    <div class="flex flex-col">
+        <h1 class="text-2xl font-bold text-center mb-2">
             Student Admission Form
-        </h2>
-        <div class="flex justify-center gap-4">
-            <Fieldset class="flex-2">
-                <template #legend>
-                    <div class="flex items-center pl-2">
-                        <span class="font-bold p-2">Student's Details</span>
-                    </div>
-                </template>
-                <div class="flex flex-col">
-                    <div class="flex justify-between gap-4">
-                        <IconField class="flex-1">
-                            <InputIcon class="fa-solid fa-user" />
-                            <InputText
-                                id="firstName"
-                                fluid
-                                v-model="student.firstName"
-                                placeholder="First Name"
-                                autocomplete="off"
-                            />
-                        </IconField>
-                        <IconField class="flex-1">
-                            <InputIcon class="fa-solid fa-user" />
-                            <InputText
-                                id="lastName"
-                                fluid
-                                v-model="student.lastName"
-                                autocomplete="off"
-                                placeholder="Last Name"
-                            />
-                        </IconField>
-                    </div>
-                </div>
-            </Fieldset>
-            <Fieldset class="flex-1">
-                <template #legend>
-                    <div class="flex items-center pl-2">
-                        <span class="font-bold p-2">Guardian's Details</span>
-                    </div>
-                </template>
-                <div class="flex flex-col">
-                    <IconField class="flex-1">
-                        <InputIcon class="fa-solid fa-user" />
-                        <InputText
-                            id="firstName"
-                            fluid
-                            v-model="student.firstName"
-                            placeholder="First Name"
-                            autocomplete="off"
+        </h1>
+        <div class="flex lg:mx-8 gap-4">
+            <Fieldset legend="Student's Details" class="w-full">
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center">
+                        <img
+                            src="https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?semt=ais_hybrid"
+                            alt=""
+                            class="size-24"
                         />
-                    </IconField>
-                </div>
-            </Fieldset>
-            <Fieldset class="flex-1">
-                <template #legend>
-                    <div class="flex items-center pl-2">
-                        <span class="font-bold p-2">Miscleneous Details</span>
+                        <InputText placeholder="ADM #" readonly class="h-fit" />
                     </div>
-                </template>
-                <div class="flex flex-col">
-                    <IconField>
-                        <InputIcon class="fa-solid fa-user" />
-                        <InputText
-                            id="firstName"
-                            fluid
-                            v-model="student.firstName"
-                            autocomplete="off"
-                            placeholder="Former School"
-                        />
-                    </IconField>
+                    <div class="flex items-center gap-2">
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-user" />
+                                <InputText
+                                    id="firstName"
+                                    fluid
+                                    v-model="student.firstName"
+                                />
+                            </IconField>
+                            <label for="firstName">First Name</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-user" />
+                                <InputText
+                                    id="surname"
+                                    fluid
+                                    v-model="student.surname"
+                                />
+                            </IconField>
+                            <label for="surname"> Surname</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-user" />
+                                <InputText
+                                    id="lastName"
+                                    fluid
+                                    v-model="student.lastName"
+                                />
+                            </IconField>
+                            <label for="lastName">Last Name</label>
+                        </FloatLabel>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-calendar-days" />
+                                <DatePicker
+                                    name="date"
+                                    id="dob"
+                                    fluid
+                                    v-model="student.dob"
+                                    :manualInput="false"
+                                />
+                            </IconField>
+                            <label for="dob">Date of birth</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <Select
+                                v-model="student.religion"
+                                :options="religions"
+                                optionLabel="name"
+                                id="religion"
+                                fluid
+                            />
+                            <label for="religion">Nationality</label>
+                        </FloatLabel>
+
+                        <div class="flex gap-4 px-2">
+                            <div class="flex items-center gap-2">
+                                <RadioButton
+                                    v-model="student.gender"
+                                    inputId="male"
+                                    name="gender"
+                                    value="male"
+                                />
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <RadioButton
+                                    v-model="student.gender"
+                                    inputId="female"
+                                    name="gender"
+                                    value="female"
+                                />
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-school" />
+                                <CascadeSelect
+                                    v-model="selectedStream"
+                                    fluid
+                                    :options="grades"
+                                    optionLabel="sname"
+                                    optionGroupLabel="name"
+                                    id="stream"
+                                    :optionGroupChildren="['streams']"
+                                />
+                            </IconField>
+                            <label for="stream">Class/Grade</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-calendar-days" />
+                                <DatePicker
+                                    name="enrollment"
+                                    id="enrollment"
+                                    fluid
+                                    v-model="student.enrollment"
+                                    show-button-bar
+                                    :manualInput="false"
+                                />
+                            </IconField>
+                            <label for="enrollment">Enrollment date</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <MultiSelect
+                                v-model="student.subjects"
+                                :options="subjects"
+                                optionLabel="name"
+                                id="subjects"
+                                display="chip"
+                                filter
+                                fluid
+                                :maxSelectedLabels="0"
+                            />
+                            <label for="subjects">Select Subjects</label>
+                        </FloatLabel>
+                    </div>
                 </div>
             </Fieldset>
+            <Fieldset legend="Guardian's Details" class="w-full"></Fieldset>
         </div>
-    </div> -->
-    <div>Admission</div>
+    </div>
 </template>

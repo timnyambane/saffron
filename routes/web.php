@@ -6,6 +6,9 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 });
+Route::get('/login', function () {
+    return Inertia::render('Auth/Login');
+})->name('login');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -16,5 +19,5 @@ Route::get('/settings', function () {
 })->name('settings');
 
 Route::get('/students/admission', function () {
-    return Inertia::render('students/Admission');
+    return Inertia::render('Students/Admission');
 })->name('students.admission');

@@ -97,3 +97,66 @@ export const modules = [
         route: "/settings",
     },
 ];
+
+export const religions = [
+    { name: "Christian", code: "CH" },
+    { name: "Muslim", code: "MU" },
+    { name: "Hindi", code: "HI" },
+];
+
+export const grades = [
+    {
+        name: "Grade 1",
+        code: "G1",
+        streams: [
+            { sname: "East", code: "G1-E" },
+            { sname: "West", code: "G1-W" },
+        ],
+    },
+    {
+        name: "Grade 4",
+        code: "G4",
+        streams: [
+            { sname: "North", code: "G4-N" },
+            { sname: "South", code: "G4-S" },
+        ],
+    },
+    {
+        name: "Grade 6",
+        code: "G6",
+        streams: [
+            { sname: "Stream A", code: "G6-A" },
+            { sname: "Stream B", code: "G6-B" },
+        ],
+    },
+    {
+        name: "Junior Secondary (Grade 8)",
+        code: "G8",
+        streams: [
+            { sname: "Science & Tech", code: "G8-ST" },
+            { sname: "Arts & Languages", code: "G8-AL" },
+        ],
+    },
+    {
+        name: "Senior Secondary (Grade 12)",
+        code: "G12",
+        streams: [
+            { sname: "STEM", code: "G12-STEM" },
+            { sname: "Humanities", code: "G12-HUM" },
+            { sname: "Business Studies", code: "G12-BUS" },
+        ],
+    },
+];
+
+export const subjects = [
+    { name: "Mathematics", code: "MATH" },
+    { name: "English", code: "ENG" },
+    { name: "Kiswahili", code: "KIS" },
+    { name: "Science & Technology", code: "SCI-TECH" },
+    { name: "Social Studies", code: "SOC" },
+    { name: "Religious Education", code: "RE" },
+    { name: "Agriculture", code: "AGRI" },
+    { name: "Creative Arts & Music", code: "ART" },
+    { name: "Physical & Health Education", code: "PHE" },
+    { name: "ICT & Computer Studies", code: "ICT" },
+];

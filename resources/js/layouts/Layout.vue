@@ -2,6 +2,7 @@
 import { ref, computed, watch } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
 import { modules } from "../data";
+import Footer from "../components/Footer.vue";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 const openModules = ref(new Set());
@@ -71,11 +72,11 @@ const toggleSidebar = () => {
         </nav>
 
         <!-- Page Layout -->
-        <div class="flex gap-2.5 p-4 flex-grow h-0 relative">
+        <div class="flex gap-2 p-1 md:p-2 flex-grow h-0 relative">
             <!-- Sidebar -->
             <aside
                 :class="[
-                    'bg-white p-4 rounded-xl shadow md:w-80 lg:w-64 overflow-y-auto flex flex-col fixed inset-y-0 left-0 transform lg:relative lg:translate-x-0 transition-transform duration-300 z-50',
+                    'bg-white p-4 rounded-lg shadow md:w-80 lg:w-64 overflow-y-auto flex flex-col fixed inset-y-0 left-0 transform lg:relative lg:translate-x-0 transition-transform duration-300 z-50',
                     sidebarOpen ? 'translate-x-0' : '-translate-x-full',
                 ]"
             >
@@ -160,28 +161,10 @@ const toggleSidebar = () => {
             </aside>
 
             <!-- Main Content -->
-            <main class="flex flex-col flex-grow gap-4 rounded-xl">
+            <main class="flex flex-col flex-grow gap-4 md:gap-2 rounded-lg">
                 <div class="flex-grow overflow-y-auto flex flex-col">
                     <slot />
-                    <footer
-                        class="p-4 mt-auto bg-white rounded-lg flex flex-col md:flex-row items-center justify-between text-sm text-gray-600"
-                    >
-                        <span
-                            >&copy; {{ new Date().getFullYear() }}
-                            {{ appName }}, All rights reserved.</span
-                        >
-                        <div class="flex gap-4 mt-2 md:mt-0">
-                            <Link href="#" class="hover:underline"
-                                >Privacy Policy</Link
-                            >
-                            <Link href="#" class="hover:underline"
-                                >Terms of Service</Link
-                            >
-                            <Link href="#" class="hover:underline"
-                                >Support</Link
-                            >
-                        </div>
-                    </footer>
+                    <Footer />
                 </div>
             </main>
         </div>
