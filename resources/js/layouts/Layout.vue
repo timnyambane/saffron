@@ -45,7 +45,7 @@ const toggleSidebar = () => {
 
 <template>
     <Head title="Home" />
-    <div class="min-h-screen min-w-screen bg-gray-100 flex flex-col relative">
+    <div class="min-h-screen min-w-screen bg-slate-100 flex flex-col relative">
         <!-- Navigation Bar -->
         <nav
             class="p-2 w-full shadow bg-white flex items-center justify-between"
@@ -85,7 +85,7 @@ const toggleSidebar = () => {
                     class="text-xl absolute top-4 right-4 lg:hidden"
                     @click="toggleSidebar"
                 />
-                <nav class="space-y-2 mt-10 lg:mt-0">
+                <nav class="space-y-1.5 mt-10 lg:mt-0">
                     <template
                         v-for="(module, index) in modules"
                         :key="module.module"
@@ -94,10 +94,10 @@ const toggleSidebar = () => {
                             <template v-if="module.subModules">
                                 <button
                                     @click="toggleDropdown(index)"
-                                    class="flex items-center justify-between w-full p-2 rounded-lg transition"
+                                    class="flex items-center justify-between w-full p-1.5 rounded transition"
                                     :class="{
-                                        'bg-gray-100': openModules.has(index),
-                                        'hover:bg-gray-200':
+                                        'bg-slate-100': openModules.has(index),
+                                        'hover:bg-slate-200':
                                             !openModules.has(index),
                                     }"
                                 >
@@ -122,16 +122,16 @@ const toggleSidebar = () => {
                                             : '0px',
                                     }"
                                 >
-                                    <ul class="mt-1 space-y-1">
+                                    <ul class="mt-1 space-y-0.5">
                                         <Link
                                             v-for="sub in module.subModules"
                                             :key="sub.name"
                                             :href="sub.route"
-                                            class="block p-1.5 rounded-lg pl-8 transition"
+                                            class="block p-1 rounded pl-8 transition"
                                             :class="{
                                                 'bg-primary-800 text-white':
                                                     currentRoute === sub.route,
-                                                'hover:bg-gray-200':
+                                                'hover:bg-slate-200':
                                                     currentRoute !== sub.route,
                                             }"
                                         >
@@ -143,11 +143,11 @@ const toggleSidebar = () => {
                             <template v-else>
                                 <Link
                                     :href="module.route"
-                                    class="flex items-center gap-2 w-full p-2 rounded-lg transition"
+                                    class="flex items-center gap-2 w-full p-1.5 rounded transition"
                                     :class="{
                                         'bg-primary-800 text-white':
                                             currentRoute === module.route,
-                                        'hover:bg-gray-200':
+                                        'hover:bg-slate-200':
                                             currentRoute !== module.route,
                                     }"
                                 >

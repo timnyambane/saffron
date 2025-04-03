@@ -1,10 +1,13 @@
 <script setup>
 import { Head, useForm } from "@inertiajs/vue3";
-import { religions, grades, subjects } from "../../data";
+import { grades, subjects } from "../../data";
+import { ref } from "vue";
+
+const selectedStream = ref(null);
 
 const student = useForm({
     firstName: null,
-    surame: null,
+    surname: null,
     lastName: null,
     gender: null,
     dob: null,
@@ -14,7 +17,7 @@ const student = useForm({
     photo: null,
     religion: null,
     country: null,
-    subjects: {},
+    subjects: [],
     guardian: {
         relation: null,
         name: null,
@@ -92,13 +95,13 @@ const student = useForm({
                         </FloatLabel>
                         <FloatLabel variant="on" class="w-full">
                             <Select
-                                v-model="student.religion"
-                                :options="religions"
+                                v-model="student.country"
+                                :options="countries"
                                 optionLabel="name"
-                                id="religion"
+                                id="country"
                                 fluid
                             />
-                            <label for="religion">Nationality</label>
+                            <label for="country">Nationality</label>
                         </FloatLabel>
 
                         <div class="flex gap-4 px-2">
@@ -124,18 +127,15 @@ const student = useForm({
                     </div>
                     <div class="flex items-center gap-2">
                         <FloatLabel variant="on" class="w-full">
-                            <IconField>
-                                <InputIcon class="fa-solid fa-school" />
-                                <CascadeSelect
-                                    v-model="selectedStream"
-                                    fluid
-                                    :options="grades"
-                                    optionLabel="sname"
-                                    optionGroupLabel="name"
-                                    id="stream"
-                                    :optionGroupChildren="['streams']"
-                                />
-                            </IconField>
+                            <CascadeSelect
+                                v-model="selectedStream"
+                                fluid
+                                :options="grades"
+                                optionLabel="sname"
+                                optionGroupLabel="name"
+                                id="stream"
+                                :optionGroupChildren="['streams']"
+                            />
                             <label for="stream">Class/Grade</label>
                         </FloatLabel>
                         <FloatLabel variant="on" class="w-full">
@@ -166,9 +166,72 @@ const student = useForm({
                             <label for="subjects">Select Subjects</label>
                         </FloatLabel>
                     </div>
+                    <FloatLabel variant="on" class="w-full">
+                        <Textarea
+                            id="address"
+                            type="text"
+                            name="address"
+                            v-model="student.address"
+                            rows="5"
+                            cols="30"
+                        />
+                        <label for="address">Address</label>
+                    </FloatLabel>
                 </div>
             </Fieldset>
-            <Fieldset legend="Guardian's Details" class="w-full"></Fieldset>
+            <Fieldset legend="Guardian's Details" class="w-full h-fit">
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center gap-2">
+                        <FloatLabel variant="on" class="w-full">
+                            <Select
+                                v-model="student.guardian.relation"
+                                :options="relations"
+                                optionLabel="name"
+                                id="relation"
+                                fluid
+                            />
+                            <label for="relation">Relation</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-user" />
+                                <InputText
+                                    id="guardianName"
+                                    fluid
+                                    v-model="student.guardian.name"
+                                />
+                            </IconField>
+                            <label for="guardianName">Guardian Name</label>
+                        </FloatLabel>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-envelope" />
+                                <InputText
+                                    id="guardianEmail"
+                                    fluid
+                                    v-model="student.guardian.email"
+                                    type="email"
+                                />
+                            </IconField>
+                            <label for="guardianEmail">Guardian Email</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-full">
+                            <IconField>
+                                <InputIcon class="fa-solid fa-phone" />
+                                <InputText
+                                    id="guardianPhone"
+                                    fluid
+                                    v-model="student.guardian.phone"
+                                    type="tel"
+                                />
+                            </IconField>
+                            <label for="guardianPhone">Guardian Phone</label>
+                        </FloatLabel>
+                    </div>
+                </div>
+            </Fieldset>
         </div>
     </div>
 </template>
