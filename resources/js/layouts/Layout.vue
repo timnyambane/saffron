@@ -48,7 +48,7 @@ const toggleSidebar = () => {
     <div class="min-h-screen min-w-screen bg-slate-100 flex flex-col relative">
         <!-- Navigation Bar -->
         <nav
-            class="p-2 w-full shadow bg-white flex items-center justify-between"
+            class="py-2 px-4 w-full shadow bg-white flex items-center justify-between"
         >
             <div class="flex items-center gap-2">
                 <Icon
@@ -56,7 +56,8 @@ const toggleSidebar = () => {
                     class="text-2xl cursor-pointer lg:hidden"
                     @click="toggleSidebar"
                 />
-                <h1 class="font-bold text-xl">{{ appName }}</h1>
+                <img src="@/assets/saffron.svg" alt="Logo here" class="h-6" />
+                <h1 class="font-bold text-xl spectral-sc">{{ appName }}</h1>
             </div>
             <div class="flex items-center">
                 <Avatar
@@ -176,3 +177,13 @@ const toggleSidebar = () => {
         ></div>
     </div>
 </template>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Spectral+SC:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+.spectral-sc {
+    font-family: "Spectral SC", serif;
+    font-weight: 800;
+    font-style: italic;
+}
+</style>

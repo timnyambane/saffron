@@ -21,7 +21,7 @@ const loginDetails = ref({
             action=""
             class="flex flex-col p-6 gap-4 items-center backdrop-blur-lg bg-white/10 border border-white/20 rounded-lg shadow-lg w-md"
         >
-            <img src="" alt="Logo here" class="size-10" />
+            <img src="@/assets/saffron.svg" alt="Logo here" class="h-18" />
             <div class="text-center">
                 <h1 class="text-xl font-bold">Welcome back to {{ appName }}</h1>
                 <span class="text-sm"
